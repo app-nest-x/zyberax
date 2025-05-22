@@ -75,6 +75,13 @@ export default function Navigation() {
               ABOUT
               <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
+            <Link
+              href="/contact"
+              className="hover:text-[#7888FF] transition-colors duration-300 relative group"
+            >
+              CONTACT
+              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
+            </Link>
             {isLoggedIn ? (
               <div className="flex items-center space-x-4">
                 <span className="text-[#F5F5F5] text-sm">
@@ -239,6 +246,14 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               ABOUT
+              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/contact"
+              className="text-[#F5F5F5] hover:text-[#7888FF] transition-colors duration-300 relative group"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              CONTACT
               <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link

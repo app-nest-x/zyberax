@@ -362,7 +362,13 @@ export default function Home() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-[#333333] flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-xs">© 2023 Zyberax. All rights reserved.</div>
+            <div className="text-xs">
+              © 2023 Zyberax. All rights reserved. 
+              <span className="mx-3 text-[#333333]">|</span>
+              <Link href="/privacy" className="hover:text-[#7888FF] transition-colors duration-300">Privacy Policy</Link>
+              <span className="mx-3 text-[#333333]">|</span>
+              <Link href="/terms" className="hover:text-[#7888FF] transition-colors duration-300">Terms & Conditions</Link>
+            </div>
             <div className="flex gap-4">
               <a href="#" className="text-[#A0A0A0] hover:text-[#7888FF] transition-colors duration-300">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
