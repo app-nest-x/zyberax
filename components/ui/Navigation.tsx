@@ -55,17 +55,17 @@ export default function Navigation() {
 
           <div className="hidden md:flex items-center space-x-10 text-[#A0A0A0] text-sm tracking-widest">
             <Link
+              href="/"
+              className="hover:text-[#7888FF] transition-colors duration-300 relative group"
+            >
+              HOME
+              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
               href="/shop"
               className="hover:text-[#7888FF] transition-colors duration-300 relative group"
             >
               SHOP
-              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-            <Link
-              href="/collections"
-              className="hover:text-[#7888FF] transition-colors duration-300 relative group"
-            >
-              COLLECTIONS
               <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
@@ -218,19 +218,19 @@ export default function Navigation() {
               </span>
             )}
             <Link
+              href="/"
+              className="text-[#F5F5F5] hover:text-[#7888FF] transition-colors duration-300 relative group"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              HOME
+              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
               href="/shop"
               className="text-[#F5F5F5] hover:text-[#7888FF] transition-colors duration-300 relative group"
               onClick={() => setIsMenuOpen(false)}
             >
               SHOP
-              <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-            <Link
-              href="/collections"
-              className="text-[#F5F5F5] hover:text-[#7888FF] transition-colors duration-300 relative group"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              COLLECTIONS
               <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-[#7888FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link

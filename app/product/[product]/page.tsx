@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -14,95 +15,95 @@ interface Product {
   reviews: number;
 }
 
+// Updated product data to match our shop
 const products: Product[] = [
   {
     id: 1,
-    name: "The Catalyzer",
-    price: 16.0,
-    category: "Electronics",
-    image: "https://dummyimage.com/420x260",
-    description:
-      "Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY.",
+    name: "ECLIPSE HOODIE",
+    price: 89.0,
+    category: "HOODIES",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Minimalist design with technical fabric and reflective details. Features a relaxed fit with kangaroo pocket and adjustable drawcord hood. Made from premium cotton blend with moisture-wicking properties.",
     brand: "ZYBERAX",
     rating: 4,
-    reviews: 4,
+    reviews: 12,
   },
   {
     id: 2,
-    name: "Shooting Stars",
-    price: 21.15,
-    category: "Accessories",
-    image: "https://dummyimage.com/421x261",
-    description: "High-quality accessory with a futuristic design.",
+    name: "NEXUS TEE",
+    price: 45.0,
+    category: "T-SHIRTS",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Premium cotton blend with avant-garde graphic print. Features a relaxed fit with ribbed collar and clean finishes. Designed for everyday wear with a distinctive aesthetic.",
     brand: "ZYBERAX",
-    rating: 4,
-    reviews: 10,
+    rating: 5,
+    reviews: 18,
   },
   {
     id: 3,
-    name: "Neptune",
-    price: 12.0,
-    category: "Gadgets",
-    image: "https://dummyimage.com/422x262",
-    description: "Compact gadget with cutting-edge technology.",
+    name: "BINARY CARGO",
+    price: 110.0,
+    category: "PANTS",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Tactical-inspired cargo pants with minimal pocket design. Features a tapered fit with articulated knees and adjustable ankle cuffs. Made from durable ripstop fabric with water-repellent coating.",
     brand: "ZYBERAX",
-    rating: 3,
+    rating: 4,
     reviews: 6,
   },
   {
     id: 4,
-    name: "The 400 Blows",
-    price: 18.4,
-    category: "Tech",
-    image: "https://dummyimage.com/423x263",
-    description: "Advanced tech product for enthusiasts.",
+    name: "VOID JACKET",
+    price: 175.0,
+    category: "OUTERWEAR",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Weatherproof technical jacket with minimalist aesthetic. Features a streamlined silhouette with hidden pockets and storm cuffs. Made from 3-layer fabric with taped seams for ultimate protection against the elements.",
     brand: "ZYBERAX",
-    rating: 4,
-    reviews: 8,
+    rating: 5,
+    reviews: 9,
   },
   {
     id: 5,
-    name: "The Catalyzer Pro",
-    price: 16.0,
-    category: "Electronics",
-    image: "https://dummyimage.com/424x264",
-    description: "Enhanced version of The Catalyzer.",
-    brand: "ZYBERAX",
-    rating: 4,
-    reviews: 5,
-  },
-  {
-    id: 6,
-    name: "Shooting Stars+",
-    price: 21.15,
-    category: "Accessories",
-    image: "https://dummyimage.com/425x265",
-    description: "Premium accessory with a sleek design.",
-    brand: "ZYBERAX",
-    rating: 5,
-    reviews: 12,
-  },
-  {
-    id: 7,
-    name: "Neptune X",
-    price: 12.0,
-    category: "Gadgets",
-    image: "https://dummyimage.com/427x267",
-    description: "Next-generation gadget with improved functionality.",
+    name: "SPECTRUM CREWNECK",
+    price: 75.0,
+    category: "SWEATERS",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Heavyweight cotton crewneck with understated design elements. Features a classic fit with ribbed cuffs and hem. Perfect for layering or as a standalone piece for year-round comfort.",
     brand: "ZYBERAX",
     rating: 4,
     reviews: 7,
   },
   {
-    id: 8,
-    name: "The 400 Blows Elite",
-    price: 18.4,
-    category: "Tech",
-    image: "https://dummyimage.com/428x268",
-    description: "Elite tech product for high-performance needs.",
+    id: 6,
+    name: "CIRCUIT SHORTS",
+    price: 65.0,
+    category: "SHORTS",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Technical fabric shorts with hidden pocket system. Features a relaxed fit with elasticated waistband and quick-dry technology. Designed for versatility and maximum movement.",
     brand: "ZYBERAX",
-    rating: 5,
-    reviews: 9,
+    rating: 4,
+    reviews: 5,
+  },
+  {
+    id: 7,
+    name: "NEURAL CAP",
+    price: 35.0,
+    category: "ACCESSORIES",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Minimalist cap with embroidered logo and adjustable fit. Features a six-panel construction with ventilation eyelets. Made from premium cotton twill for lasting comfort.",
+    brand: "ZYBERAX",
+    rating: 4,
+    reviews: 11,
+  },
+  {
+    id: 8,
+    name: "PROXY LONG SLEEVE",
+    price: 55.0,
+    category: "TOPS",
+    image: "https://dummyimage.com/800x1000/111111/7888ff&text=ZYBERAX",
+    description: "Longsleeve tee with extended cuffs and subtle graphic elements. Features a regular fit with premium cotton construction. Versatile piece designed for layering or standalone wear.",
+    brand: "ZYBERAX", 
+    rating: 4,
+    reviews: 8,
   },
 ];
 
@@ -110,8 +111,14 @@ interface ProductPageProps {
   params: Promise<{ product: string }>;
 }
 
+const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+const colors = ["#000000", "#FFFFFF", "#7888FF"];
+
 const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedColor, setSelectedColor] = useState(colors[2]);
+  const [quantity, setQuantity] = useState(1);
   const resolvedParams = React.use(params); // Unwrap the params Promise
 
   useEffect(() => {
@@ -128,8 +135,22 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
     return null;
   }
 
+  // Find related products (same category, excluding current product)
+  const relatedProducts = products
+    .filter(p => p.category === product.category && p.id !== product.id)
+    .slice(0, 3);
+
+  const incrementQuantity = () => {
+    if (quantity < 10) setQuantity(quantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+  };
+
   return (
     <div className="bg-[#080808] min-h-screen">
+      {/* Loading screen */}
       <div
         className="fixed inset-0 bg-black z-50 flex items-center justify-center pointer-events-none transition-opacity duration-1000"
         style={{
@@ -150,142 +171,220 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
         </div>
       </div>
 
-      <section className="text-[#A0A0A0] body-font overflow-hidden pt-24">
-        <div className="container px-6 md:px-12 py-24 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            <div className="lg:w-1/2 w-full lg:h-auto h-64 relative group">
-              <img
-                alt={product.name}
-                className="object-cover object-center w-full h-full rounded transition-opacity duration-300 group-hover:opacity-80"
-                src={product.image}
-              />
-              <div className="absolute inset-0 bg-[#7888FF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 className="text-sm font-mono text-[#A0A0A0] tracking-widest">
-                {product.brand}
-              </h2>
-              <h1 className="text-[#F5F5F5] text-3xl title-font font-medium mb-1 tracking-widest">
-                {product.name}
-              </h1>
-              <div className="flex mb-4">
-                <span className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      fill={i < product.rating ? "currentColor" : "none"}
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-4 h-4 text-[#7888FF]"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                    </svg>
-                  ))}
-                  <span className="text-[#A0A0A0] ml-3 font-mono">
-                    {product.reviews} Reviews
-                  </span>
-                </span>
-                <span className="flex ml-3 pl-3 py-2 border-l-2 border-[#333333] space-x-2">
-                  <a className="text-[#A0A0A0] hover:text-[#7888FF] transition-colors duration-300">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                    </svg>
-                  </a>
-                  <a className="text-[#A0A0A0] hover:text-[#7888FF] transition-colors duration-300">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                    </svg>
-                  </a>
-                  <a className="text-[#A0A0A0] hover:text-[#7888FF] transition-colors duration-300">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
-                  </a>
-                </span>
+      <div className="py-12 md:pt-24 md:pb-32">
+        {/* Breadcrumb */}
+        <div className="container mx-auto px-6 md:px-12 mb-10">
+          <div className="flex items-center text-xs text-[#707070] font-mono">
+            <Link href="/" className="hover:text-[#A0A0A0] transition-colors">HOME</Link>
+            <span className="mx-2">/</span>
+            <Link href="/shop" className="hover:text-[#A0A0A0] transition-colors">SHOP</Link>
+            <span className="mx-2">/</span>
+            <Link href={`/shop?category=${product.category}`} className="hover:text-[#A0A0A0] transition-colors">{product.category}</Link>
+            <span className="mx-2">/</span>
+            <span className="text-[#A0A0A0]">{product.name}</span>
+          </div>
+        </div>
+
+        {/* Product details */}
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+            {/* Product images */}
+            <div className="space-y-6">
+              <div className="aspect-[4/5] bg-[#111111] relative group overflow-hidden">
+                <img
+                  alt={product.name}
+                  className="object-cover object-center w-full h-full"
+                  src={product.image}
+                />
+                {product.id < 3 && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <div className="bg-[#7888FF] px-3 py-1">
+                      <span className="text-xs font-mono text-black font-medium">NEW</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              <p className="leading-relaxed text-[#A0A0A0] font-mono">
-                {product.description}
-              </p>
-              <div className="flex mt-6 items-center pb-5 border-b-2 border-[#333333] mb-5">
-                <div className="flex items-center">
-                  <span className="mr-3 text-[#F5F5F5] font-mono">Color</span>
-                  <button className="border-2 border-[#333333] rounded-full w-6 h-6 focus:outline-none bg-white"></button>
-                  <button className="border-2 border-[#333333] ml-1 bg-[#111111] rounded-full w-6 h-6 focus:outline-none"></button>
-                  <button className="border-2 border-[#333333] ml-1 bg-[#7888FF] rounded-full w-6 h-6 focus:outline-none"></button>
-                </div>
-                <div className="flex ml-6 items-center">
-                  <span className="mr-3 text-[#F5F5F5] font-mono">Size</span>
-                  <div className="relative">
-                    <select className="rounded border border-[#333333] bg-[#111111] text-[#F5F5F5] py-2 focus:outline-none focus:ring-2 focus:ring-[#7888FF] focus:border-[#7888FF] text-base pl-3 pr-10">
-                      <option>SM</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-                    <span className="absolute right-0 top-0 h-full w-10 text-center text-[#A0A0A0] pointer-events-none flex items-center justify-center">
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        className="w-4 h-4"
-                        viewBox="0 0 24 24"
+
+              {/* Thumbnail gallery (dummy for now) */}
+              <div className="grid grid-cols-4 gap-2">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className={`aspect-square bg-[#111111] ${i === 0 ? 'ring-2 ring-[#7888FF]' : ''}`}>
+                    <img
+                      alt={`Thumbnail ${i+1}`}
+                      className="object-cover object-center w-full h-full opacity-90"
+                      src={product.image}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Product info */}
+            <div className="flex flex-col">
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="text-[#A0A0A0] text-xs tracking-widest font-mono">
+                    {product.category}
+                  </h3>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <span 
+                        key={i} 
+                        className={`text-sm ${i < product.rating ? 'text-[#7888FF]' : 'text-[#333333]'}`}
                       >
-                        <path d="M6 9l6 6 6-6"></path>
-                      </svg>
-                    </span>
+                        ★
+                      </span>
+                    ))}
+                    <span className="text-[10px] text-[#707070] ml-2">({product.reviews})</span>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center">
-                <span className="title-font font-medium text-2xl text-[#F5F5F5]">
-                  ${product.price.toFixed(2)}
-                </span>
-                <button className="flex ml-auto text-[#F5F5F5] bg-[#7888FF] border-0 py-2 px-6 focus:outline-none hover:bg-[#6b79e6] rounded transition-colors duration-300 font-mono tracking-wider">
-                  Add to Cart
-                </button>
-                <button className="rounded-full w-10 h-10 bg-[#111111] p-0 border-0 inline-flex items-center justify-center text-[#A0A0A0] hover:text-[#7888FF] ml-4 transition-colors duration-300">
-                  <svg
-                    fill="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                  </svg>
-                </button>
+                
+                <h1 className="text-[#F5F5F5] text-2xl md:text-3xl font-light tracking-wider mb-4">
+                  {product.name}
+                </h1>
+                
+                <p className="text-xl font-medium text-[#F5F5F5] mb-6">
+                  ${product.price.toFixed(0)}
+                </p>
+                
+                <div className="h-px bg-[#1a1a1a] w-full my-6"></div>
+                
+                <p className="text-[#A0A0A0] text-sm leading-relaxed mb-8">
+                  {product.description}
+                </p>
+
+                {/* Color selector */}
+                <div className="mb-6">
+                  <h3 className="text-xs font-mono text-[#F5F5F5] mb-3">COLOR</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {colors.map((color) => (
+                      <button
+                        key={color}
+                        className={`w-8 h-8 rounded-full transition-all duration-300 ${
+                          selectedColor === color ? 'ring-2 ring-offset-2 ring-offset-[#080808] ring-[#7888FF]' : ''
+                        }`}
+                        style={{ backgroundColor: color }}
+                        onClick={() => setSelectedColor(color)}
+                        aria-label={`Select color ${color}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Size selector */}
+                <div className="mb-8">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xs font-mono text-[#F5F5F5]">SIZE</h3>
+                    <button className="text-[10px] text-[#A0A0A0] underline hover:text-[#7888FF] transition-colors">
+                      Size Guide
+                    </button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {sizes.map((size) => (
+                      <button
+                        key={size}
+                        className={`min-w-[40px] h-10 px-2 text-xs font-mono transition-all duration-300 ${
+                          selectedSize === size 
+                            ? 'bg-[#7888FF] text-black' 
+                            : 'border border-[#333333] text-[#A0A0A0] hover:border-[#7888FF]'
+                        }`}
+                        onClick={() => setSelectedSize(size)}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quantity selector */}
+                <div className="mb-8">
+                  <h3 className="text-xs font-mono text-[#F5F5F5] mb-3">QUANTITY</h3>
+                  <div className="flex items-center">
+                    <button 
+                      className="w-10 h-10 flex items-center justify-center border border-[#333333] text-[#A0A0A0] hover:border-[#7888FF] transition-all duration-300"
+                      onClick={decrementQuantity}
+                    >
+                      -
+                    </button>
+                    <div className="w-12 h-10 flex items-center justify-center border-t border-b border-[#333333] text-[#F5F5F5]">
+                      {quantity}
+                    </div>
+                    <button 
+                      className="w-10 h-10 flex items-center justify-center border border-[#333333] text-[#A0A0A0] hover:border-[#7888FF] transition-all duration-300"
+                      onClick={incrementQuantity}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-col space-y-4">
+                  <button className="h-12 bg-[#7888FF] text-black font-mono text-sm tracking-wider flex items-center justify-center hover:bg-[#6b79e6] transition-all duration-300">
+                    ADD TO CART
+                  </button>
+                  <button className="h-12 border border-[#333333] text-[#F5F5F5] font-mono text-sm tracking-wider flex items-center justify-center hover:border-[#7888FF] transition-all duration-300">
+                    SAVE TO WISHLIST
+                  </button>
+                </div>
+                
+                {/* Product info tabs */}
+                <div className="mt-10">
+                  <div className="border-t border-b border-[#1a1a1a] py-4 px-1">
+                    <div className="flex items-center justify-between cursor-pointer">
+                      <h3 className="text-xs font-mono text-[#F5F5F5]">DETAILS & CARE</h3>
+                      <span className="text-[#A0A0A0]">+</span>
+                    </div>
+                  </div>
+                  <div className="border-b border-[#1a1a1a] py-4 px-1">
+                    <div className="flex items-center justify-between cursor-pointer">
+                      <h3 className="text-xs font-mono text-[#F5F5F5]">SHIPPING & RETURNS</h3>
+                      <span className="text-[#A0A0A0]">+</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Related products */}
+        {relatedProducts.length > 0 && (
+          <div className="container mx-auto px-6 md:px-12 mt-24">
+            <h2 className="text-xl text-[#F5F5F5] tracking-wider mb-8">YOU MAY ALSO LIKE</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedProducts.map((relatedProduct) => (
+                <Link 
+                  key={relatedProduct.id} 
+                  href={`/product/${relatedProduct.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="group"
+                >
+                  <div className="aspect-[3/4] bg-[#111111] mb-4 overflow-hidden">
+                    <img
+                      alt={relatedProduct.name}
+                      className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
+                      src={relatedProduct.image}
+                    />
+                  </div>
+                  <h3 className="text-[#A0A0A0] text-[10px] tracking-widest font-mono mb-1">
+                    {relatedProduct.category}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-[#F5F5F5] text-sm tracking-wider">
+                      {relatedProduct.name}
+                    </h2>
+                    <p className="text-[#F5F5F5] text-sm">
+                      ${relatedProduct.price.toFixed(0)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

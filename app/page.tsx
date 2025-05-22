@@ -1,19 +1,36 @@
 "use client";
 
-import Hero from '../components/ui/Hero';
+import { useEffect, useState, useRef } from 'react';
+import Link from 'next/link';
 import Navigation from '../components/ui/Navigation';
-import FeaturedCollections from '../components/ui/FeaturedCollections';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsLoaded(true);
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+
+    // Parallax effect on scroll
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollY = window.scrollY;
+        heroRef.current.style.transform = `translateY(${scrollY * 0.4}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <main className="relative bg-black min-h-screen">
+    <main className="relative bg-[#080808] min-h-screen">
       {/* Loading screen */}
       <div 
         className="fixed inset-0 bg-black z-50 flex items-center justify-center pointer-events-none transition-opacity duration-1000"
@@ -27,15 +44,297 @@ export default function Home() {
           <div className="w-40 h-1 bg-[#111111] overflow-hidden">
             <div className="h-full w-full bg-[#7888FF] animate-progress origin-left"></div>
           </div>
-          <div className="text-xs text-[#A0A0A0] mt-4 font-mono">INITIALIZING INTERFACE</div>
+          <div className="text-xs text-[#A0A0A0] mt-4 font-mono">LAUNCHING EXPERIENCE</div>
         </div>
       </div>
       
       {/* Hero Section */}
-      <Hero />
+      <section className="relative h-screen overflow-hidden flex items-center">
+        {/* Hero background image */}
+        <div 
+          ref={heroRef}
+          className="absolute inset-0 z-0"
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transition: 'opacity 1s ease-out',
+          }}
+        >
+          <div 
+            className="absolute inset-0 bg-black opacity-40 z-10"
+          ></div>
+          <div 
+            className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent z-20"
+          ></div>
+          <img 
+            src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=2076&auto=format&fit=crop"
+            alt="ZYBERAX Fashion" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        {/* Hero content */}
+        <div className="relative z-30 max-w-7xl mx-auto w-full px-6 md:px-12">
+          <div 
+            className="max-w-xl"
+            style={{
+              opacity: isLoaded ? 1 : 0,
+              transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 1s ease-out, transform 1s ease-out',
+              transitionDelay: '0.3s'
+            }}
+          >
+            <h1 className="text-5xl md:text-7xl font-light text-white mb-6 leading-tight">
+              Minimalist <span className="text-[#7888FF]">Design</span><br />
+              Premium <span className="text-[#7888FF]">Quality</span>
+            </h1>
+            <p className="text-[#E0E0E0] text-lg mb-10 max-w-md">
+              ZYBERAX creates modern essentials with exceptional craftsmanship and timeless aesthetics.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/shop">
+                <button className="px-10 py-4 bg-white text-black font-light tracking-wider hover:bg-[#7888FF] transition-colors duration-300">
+                  SHOP NOW
+                </button>
+              </Link>
+              <Link href="/about">
+                <button className="px-10 py-4 border border-white text-white font-light tracking-wider hover:border-[#7888FF] hover:text-[#7888FF] transition-colors duration-300">
+                  OUR STORY
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       
-      {/* Featured Collections */}
-      <FeaturedCollections />
+      {/* Featured Products */}
+      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="mb-16 text-center">
+          <div 
+            className="inline-block mx-auto mb-4 w-16 h-px bg-[#7888FF]"
+            style={{
+              opacity: isLoaded ? 1 : 0,
+              transition: 'opacity 1s ease-out',
+              transitionDelay: '0.5s'
+            }}
+          ></div>
+          <h2 
+            className="text-3xl md:text-4xl font-light text-white mb-4"
+            style={{
+              opacity: isLoaded ? 1 : 0,
+              transition: 'opacity 1s ease-out',
+              transitionDelay: '0.6s'
+            }}
+          >
+            New Arrivals
+          </h2>
+          <p 
+            className="text-[#A0A0A0] max-w-lg mx-auto"
+            style={{
+              opacity: isLoaded ? 1 : 0,
+              transition: 'opacity 1s ease-out',
+              transitionDelay: '0.7s'
+            }}
+          >
+            Discover our latest collection featuring premium fabrics and distinctive design elements.
+          </p>
+        </div>
+        
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 1s ease-out, transform 1s ease-out',
+            transitionDelay: '0.8s'
+          }}
+        >
+          {[
+            {
+              id: 1,
+              name: "ECLIPSE HOODIE",
+              price: 89.99,
+              image: "https://dummyimage.com/600x800/111111/7888ff&text=HOODIE"
+            },
+            {
+              id: 2,
+              name: "VOID JACKET",
+              price: 175.00,
+              image: "https://dummyimage.com/600x800/111111/7888ff&text=JACKET"
+            },
+            {
+              id: 3,
+              name: "NEXUS TEE",
+              price: 45.00,
+              image: "https://dummyimage.com/600x800/111111/7888ff&text=TEE"
+            },
+            {
+              id: 4,
+              name: "BINARY CARGO",
+              price: 110.00,
+              image: "https://dummyimage.com/600x800/111111/7888ff&text=CARGO"
+            }
+          ].map(product => (
+            <Link href={`/product/${product.name.toLowerCase().replace(/\s+/g, "-")}`} key={product.id}>
+              <div className="group">
+                <div className="relative overflow-hidden bg-[#111111] mb-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="w-full py-2 bg-white text-black text-sm">
+                      ADD TO CART
+                    </button>
+                  </div>
+                </div>
+                <h3 className="text-white font-light mb-1">{product.name}</h3>
+                <p className="text-[#7888FF]">${product.price.toFixed(2)}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <Link href="/shop">
+            <button 
+              className="px-10 py-3 border border-[#333333] text-white font-light tracking-wider hover:border-[#7888FF] transition-colors duration-300"
+              style={{
+                opacity: isLoaded ? 1 : 0,
+                transition: 'opacity 1s ease-out',
+                transitionDelay: '1s'
+              }}
+            >
+              VIEW ALL PRODUCTS
+            </button>
+          </Link>
+        </div>
+      </section>
+      
+      {/* Brand values */}
+      <section className="py-24 bg-[#0A0A0A]">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                icon: "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z",
+                title: "CRAFTSMANSHIP",
+                description: "Each ZYBERAX piece is meticulously crafted with attention to detail and premium materials."
+              },
+              {
+                icon: "M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z",
+                title: "SUSTAINABILITY",
+                description: "We're committed to ethical production and environmentally responsible practices."
+              },
+              {
+                icon: "M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z",
+                title: "INNOVATION",
+                description: "We blend contemporary aesthetics with forward-thinking design and premium materials."
+              }
+            ].map((value, index) => (
+              <div 
+                key={index}
+                className="text-center"
+                style={{
+                  opacity: isLoaded ? 1 : 0,
+                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'opacity 1s ease-out, transform 1s ease-out',
+                  transitionDelay: `${1 + (index * 0.2)}s`
+                }}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#111111] mb-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1}
+                    stroke="currentColor"
+                    className="w-8 h-8 text-[#7888FF]"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d={value.icon} />
+                  </svg>
+                </div>
+                <h3 className="text-white text-xl font-light mb-4">{value.title}</h3>
+                <p className="text-[#A0A0A0]">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Collection highlight */}
+      <section className="relative py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div 
+              className="relative"
+              style={{
+                opacity: isLoaded ? 1 : 0,
+                transform: isLoaded ? 'translateX(0)' : 'translateX(-30px)',
+                transition: 'opacity 1s ease-out, transform 1s ease-out',
+                transitionDelay: '1.4s'
+              }}
+            >
+              <img 
+                src="https://dummyimage.com/800x1000/111111/7888ff&text=COLLECTION" 
+                alt="Fall Collection"
+                className="w-full"
+              />
+              {/* Accent border */}
+              <div className="absolute -top-4 -bottom-4 -left-4 border border-[#7888FF] -z-10"></div>
+            </div>
+            
+            <div 
+              className="md:pl-12"
+              style={{
+                opacity: isLoaded ? 1 : 0,
+                transform: isLoaded ? 'translateX(0)' : 'translateX(30px)',
+                transition: 'opacity 1s ease-out, transform 1s ease-out',
+                transitionDelay: '1.6s'
+              }}
+            >
+              <div className="w-12 h-px bg-[#7888FF] mb-6"></div>
+              <h2 className="text-3xl md:text-4xl font-light text-white mb-6">Fall Collection 2025</h2>
+              <p className="text-[#A0A0A0] mb-8">
+                Our latest collection features minimalist essentials with premium materials and thoughtful details. Clean silhouettes that transcend trends, designed for the modern individual who values quality and understated elegance.
+              </p>
+              <Link href="/shop">
+                <button className="px-10 py-4 bg-[#7888FF] text-white font-light tracking-wider hover:bg-[#6b79e6] transition-colors duration-300">
+                  EXPLORE COLLECTION
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Newsletter */}
+      <section className="py-24 bg-[#0A0A0A]">
+        <div 
+          className="max-w-2xl mx-auto px-6 md:px-12 text-center"
+          style={{
+            opacity: isLoaded ? 1 : 0,
+            transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 1s ease-out, transform 1s ease-out',
+            transitionDelay: '1.8s'
+          }}
+        >
+          <h2 className="text-3xl font-light text-white mb-4">Join the ZYBERAX community</h2>
+          <p className="text-[#A0A0A0] mb-8">
+            Subscribe to receive updates on new collections, exclusive offers, and style inspiration.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="email"
+              placeholder="Your email address"
+              className="flex-grow bg-[#111111] border border-[#333333] py-3 px-4 text-white focus:border-[#7888FF] outline-none"
+            />
+            <button className="px-6 py-3 bg-white text-black font-light tracking-wider hover:bg-[#7888FF] hover:text-white transition-colors duration-300">
+              SUBSCRIBE
+            </button>
+          </div>
+        </div>
+      </section>
       
       {/* Simple Footer */}
       <footer className="bg-[#080808] border-t border-[#333333] py-12 text-[#A0A0A0]">
@@ -49,16 +348,15 @@ export default function Home() {
             <div className="flex gap-8 text-sm">
               <div className="flex flex-col gap-2">
                 <div className="text-[#F5F5F5] mb-2">Explore</div>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">Collections</a>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">New Arrivals</a>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">Best Sellers</a>
+                <Link href="/shop" className="hover:text-[#7888FF] transition-colors duration-300">Shop</Link>
+                <Link href="/about" className="hover:text-[#7888FF] transition-colors duration-300">About</Link>
               </div>
               
               <div className="flex flex-col gap-2">
-                <div className="text-[#F5F5F5] mb-2">Company</div>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">About</a>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">Careers</a>
-                <a href="#" className="hover:text-[#7888FF] transition-colors duration-300">Contact</a>
+                <div className="text-[#F5F5F5] mb-2">Customer Care</div>
+                <Link href="#" className="hover:text-[#7888FF] transition-colors duration-300">Contact</Link>
+                <Link href="#" className="hover:text-[#7888FF] transition-colors duration-300">Shipping</Link>
+                <Link href="#" className="hover:text-[#7888FF] transition-colors duration-300">Returns</Link>
               </div>
             </div>
           </div>

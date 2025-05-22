@@ -40,3 +40,50 @@ body {
 .animate-float {
   animation: float 15s ease-in-out infinite;
 }
+
+/* Fix for product animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-fix {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* About page animations */
+@keyframes progress {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.animate-progress {
+  animation: progress 2s ease-out forwards;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-opacity {
+  animation: pulseOpacity 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin 15s linear infinite;
+}
+
+@keyframes reverseSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.animate-reverse-spin-slow {
+  animation: reverseSpin 20s linear infinite;
+}
