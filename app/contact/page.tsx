@@ -84,10 +84,10 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-[#7888FF] text-sm font-mono mb-2">HEADQUARTERS</h3>
                 <p className="text-[#A0A0A0]">
-                  ZYBERAX Headquarters<br />
-                  123 Fashion District<br />
-                  New York, NY 10001<br />
-                  United States
+                  Zyberus Private Limited<br />
+                  Hi-Tech City, Madhapur<br />
+                  Hyderabad, Telangana 500081<br />
+                  India
                 </p>
               </div>
               
