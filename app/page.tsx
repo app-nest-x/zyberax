@@ -30,9 +30,6 @@ export default function Home() {
           <div className="text-xs text-[#A0A0A0] mt-4 font-mono">INITIALIZING INTERFACE</div>
         </div>
       </div>
-
-      {/* Navigation */}
-      <Navigation />
       
       {/* Hero Section */}
       <Hero />
